@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 
 export default function StudentsTable({ Students }) {
   let count = 0;
+
   return (
     <>
       <TableContainer component={Paper}>

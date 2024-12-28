@@ -2,10 +2,15 @@ import { Paper } from "@mui/material";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function AddForm({ Students, changeStudents }) {
   const [formData, ChangeFormData] = useState({ id: "", name: "", age: "", gender: "" });
+  let idRef = useRef();
+  let nameRef = useRef();
+  let ageRef = useRef();
+  let genderRef = useRef();
+
   return (
     <Box
       component={Paper}
@@ -22,6 +27,7 @@ export default function AddForm({ Students, changeStudents }) {
     >
       <div>
         <TextField
+          inputRef={idRef}
           value={formData.id}
           onChange={(event) => ChangeFormData({ ...formData, id: event.target.value })}
           id="outlined-error-helper-text"
@@ -31,6 +37,7 @@ export default function AddForm({ Students, changeStudents }) {
       </div>
       <div>
         <TextField
+          inputRef={nameRef}
           value={formData.name}
           onChange={(event) => ChangeFormData({ ...formData, name: event.target.value })}
           id="filled-error"
@@ -40,6 +47,7 @@ export default function AddForm({ Students, changeStudents }) {
       </div>
       <div>
         <TextField
+          inputRef={ageRef}
           value={formData.age}
           onChange={(event) => ChangeFormData({ ...formData, age: event.target.value })}
           id="filled-error-helper-text"
@@ -49,6 +57,7 @@ export default function AddForm({ Students, changeStudents }) {
       </div>
       <div>
         <TextField
+          inputRef={genderRef}
           value={formData.gender}
           onChange={(event) => ChangeFormData({ ...formData, gender: event.target.value })}
           id="standard-error"
@@ -62,6 +71,10 @@ export default function AddForm({ Students, changeStudents }) {
           temp.push(formData);
           changeStudents(temp);
           ChangeFormData({ id: "", name: "", age: "", gender: "" });
+          idRef.current.value = null;
+          nameRef.current.value = null;
+          ageRef.current.value = null;
+          genderRef.current.value = null;
         }}
         sx={{ marginLeft: "2.5rem" }}
         variant="contained"
